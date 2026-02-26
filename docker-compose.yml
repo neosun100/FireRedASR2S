@@ -3,8 +3,8 @@ services:
     build: .
     container_name: firered-asr2s
     ports:
-      - "0.0.0.0:${HOST_PORT:-8300}:8300"
-      - "0.0.0.0:${HOST_MCP_PORT:-8301}:8301"
+      - "0.0.0.0:${HOST_PORT:-8350}:8300"
+      - "0.0.0.0:${HOST_MCP_PORT:-8351}:8301"
     deploy:
       resources:
         reservations:
