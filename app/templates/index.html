@@ -244,6 +244,8 @@ try{
 document.getElementById('progFill').style.width='40%';
 const res=await fetch('/api/transcribe',{method:'POST',body:fd});
 document.getElementById('progFill').style.width='90%';
+const ct=res.headers.get('content-type')||'';
+if(!ct.includes('application/json')){const txt=await res.text();throw new Error(res.status===403?'Cloudflare blocked the request. Try uploading a smaller file or wait a moment.':'Server returned non-JSON (HTTP '+res.status+'): '+txt.substring(0,100))}
 const data=await res.json();
 if(data.error)throw new Error(data.error);
 curResult=data;
