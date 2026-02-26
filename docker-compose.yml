@@ -1,0 +1,29 @@
+services:
+  firered-asr2s:
+    build: .
+    container_name: firered-asr2s
+    ports:
+      - "0.0.0.0:${HOST_PORT:-8300}:8300"
+      - "0.0.0.0:${HOST_MCP_PORT:-8301}:8301"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ["${GPU_ID:-2}"]
+              capabilities: [gpu]
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=${GPU_ID:-2}
+      - PORT=8300
+      - MCP_PORT=8301
+      - GPU_IDLE_TIMEOUT=${GPU_IDLE_TIMEOUT:-600}
+    volumes:
+      - /tmp/firered-asr2s:/tmp/firered-asr2s
+    shm_size: "4gb"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8300/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 120s

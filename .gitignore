@@ -1,5 +1,11 @@
-__pycache__
-out
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+out/
+output/
 *.tar.gz
 *.wav
 *.TextGrid
@@ -10,3 +16,13 @@ utt2event
 pretrained_models/
 *.swp
 *.swo
+.env
+.idea/
+.vscode/
+*.log
+.DS_Store
+Thumbs.db
+/tmp/
+*.mp3
+*.flac
+*.m4a

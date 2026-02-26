@@ -1,0 +1,14 @@
+__pycache__
+*.pyc
+*.pyo
+.git
+.gitignore
+.env
+*.tar.gz
+pretrained_models/
+out/
+output/
+runtime/
+examples_infer/
+.idea/
+.vscode/
